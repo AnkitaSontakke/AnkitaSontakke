@@ -22,9 +22,10 @@ Working tools, not writeups. Each one came out of a real problem I hit.
 | | |
 |---|---|
 | **[launch-loop](https://github.com/AnkitaSontakke/launch-loop)** | The launch system behind the 32k stars, written down. Plus `starwatch`, which measures whether a spike turned into a loop instead of just counting stars. |
-| **[humanize-writing](https://github.com/AnkitaSontakke/humanize-writing)** | A Claude Code skill and a linter that strip AI writing tells out of prose. Runs in CI. Scores a draft out of 100. |
-| **[roadmap-to-content](https://github.com/AnkitaSontakke/roadmap-to-content)** | Reads a GitHub project board and returns a four-week content plan, with a rule built in that stops you promising features you have not shipped. |
-| **[pmf-signal](https://github.com/AnkitaSontakke/pmf-signal)** | Turns a CSV of user feedback into a ranked list of the problems behind it, and flags the themes you are not tracking yet. |
+
+Three more land over the next few weeks: a linter that strips AI writing tells out of a
+draft and scores it, a tool that turns a GitHub project board into a content plan without
+promising unshipped features, and one that ranks the real problems out of a feedback CSV.
 
 ## How I work
 
