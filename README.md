@@ -1,57 +1,25 @@
-## Ankita Sontakke
+<h1>I'm Ankita 🛠️</h1>
 
-Growth and product marketing lead. I build the tools I use to do the job, which is why
-this is a GitHub profile and not a portfolio site.
+**Growth and product marketing at [OpenHuman](https://github.com/tinyhumansai)**, an open-source AI agent built at TinyHumans.
 
-Right now I run growth and marketing for **[OpenHuman](https://github.com/tinyhumansai)**,
-an open-source AI product at TinyHumans. I led the launch that took it to **32,000 GitHub
-stars and 50,000 signups in the first two weeks**, on distribution rather than spend.
+I led the launch that took it to 32,000 GitHub stars and 50,000 signups in two weeks, on distribution instead of ad spend. Before that, seven years of go-to-market for AI and Web3 products, including $849M of all-time-high TVL influenced across DeFi campaigns at ZeroLend. I build the tools I use to do the job, which is why this is a GitHub profile and not a portfolio site. Most of them are [Claude Code skills](https://github.com/AnkitaSontakke?tab=repositories) or small Python CLIs. Sometimes I write on [Medium](https://ankitasontakke.medium.com).
 
-Before that, seven years of go-to-market for AI, Web3, and SaaS products. A few numbers
-that stuck:
+---
 
-- **50,000 signups and 32,000 GitHub stars in 14 days** for an open-source AI product, no ads
-- **5,000,000 X impressions in a single month** from founder-led content, partnerships, and community
-- **$849M all-time-high TVL** influenced across DeFi campaigns at ZeroLend, including $200M in two months on a single product
-- **300,000 X followers and 220,000 Discord members** grown from scratch, not bought
+### Currently
 
-## What's here
+- Running growth for OpenHuman: launch strategy, founder-led content, developer community, and partnerships
+- Building [launch-loop](https://github.com/AnkitaSontakke/launch-loop), the launch system behind the 32k stars, plus `starwatch`, which measures whether a spike turned into a loop instead of just counting stars
+- Turning the rest of my marketing process into skills anyone can run: a linter that strips AI tells out of a draft, a board-to-content-plan tool, and a feedback ranker
 
-Working tools, not writeups. Each one came out of a real problem I hit.
+---
 
-| | |
-|---|---|
-| **[launch-loop](https://github.com/AnkitaSontakke/launch-loop)** | The launch system behind the 32k stars, written down. Plus `starwatch`, which measures whether a spike turned into a loop instead of just counting stars. |
+<p>
+  <a href="https://github.com/tinyhumansai"><img src="https://img.shields.io/badge/OpenHuman-FFC700?style=flat&logoColor=black" /></a>
+  <a href="https://x.com/SontakkeAnkita"><img src="https://img.shields.io/badge/X-000000?logo=x&logoColor=white&style=flat" /></a>
+  <a href="https://linkedin.com/in/ankitasontakke"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?logo=linkedin&logoColor=white&style=flat" /></a>
+  <a href="https://ankitasontakke.medium.com"><img src="https://img.shields.io/badge/Medium-000000?logo=medium&logoColor=white&style=flat" /></a>
+  <a href="https://ankitasontakke.com"><img src="https://img.shields.io/badge/Website-4A4A4A?style=flat" /></a>
+</p>
 
-Three more land over the next few weeks: a linter that strips AI writing tells out of a
-draft and scores it, a tool that turns a GitHub project board into a content plan without
-promising unshipped features, and one that ranks the real problems out of a feedback CSV.
-
-## How I work
-
-I do the marketing job and I build the tooling for it, usually in the same week. Most of
-what I ship is a Claude Code skill or a small Python CLI, because the useful version of
-"AI in marketing" is not a chatbot in the corner. It is a repeatable system that produces
-the same output twice and can be handed to someone else.
-
-The things I get called in for:
-
-- **Launch and distribution.** Open-source and developer launches especially, where the
-  audience can tell the difference between a demo and a claim.
-- **Positioning for technical products.** Turning a complex capability into a sentence a
-  non-engineer can repeat correctly.
-- **Growth loops.** The mechanism that keeps working after the launch post stops
-  performing.
-- **Community from zero.** Discord, X, and developer channels, built rather than bought.
-- **AI workflows that actually ship.** Agents, skills, and prompts wired into a real
-  process, with the human gates in the right places.
-
-## Elsewhere
-
-[ankitasontakke.com](https://ankitasontakke.com) ·
-[LinkedIn](https://linkedin.com/in/ankitasontakke) ·
-[X](https://x.com/SontakkeAnkita) ·
-[Medium](https://ankitasontakke.medium.com)
-
-Open to leading product, product marketing, or growth. Remote, based in India.
-Reach me at sontakke.ankita0@gmail.com.
+Open to leading product, product marketing, or growth. Remote, based in India. Reach me at sontakke.ankita0@gmail.com.
