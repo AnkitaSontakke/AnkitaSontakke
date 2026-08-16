@@ -14,6 +14,29 @@ I led the launch that took it to 32,000 GitHub stars and 50,000 signups in two w
 
 ---
 
+### Building
+
+<!-- PORTFOLIO:REPOS:START -->
+| Project | Stars | Last push |
+|---|---|---|
+| [**pmf-signal**](https://github.com/AnkitaSontakke/pmf-signal)<br>Turns a CSV of user feedback into a ranked list of the problems behind it | ⭐ 0 | 22h ago |
+| [**roadmap-to-content**](https://github.com/AnkitaSontakke/roadmap-to-content)<br>Reads a GitHub project board and returns a four-week content plan that never promises unshipped features | ⭐ 0 | 22h ago |
+| [**humanize-writing**](https://github.com/AnkitaSontakke/humanize-writing)<br>A Claude Code skill and a linter that strip AI writing tells out of prose. Runs in CI, scores a draft out of 100 | ⭐ 0 | 22h ago |
+| [**launch-loop**](https://github.com/AnkitaSontakke/launch-loop)<br>The launch system behind 32k GitHub stars in 14 days, plus a tool that measures whether a spike turned into a loop | ⭐ 0 | 22h ago |
+| [**medulla**](https://github.com/AnkitaSontakke/medulla)<br>A LLM model focused on high concurrency orchestration | ⭐ 0 | 1 month ago |
+<!-- PORTFOLIO:REPOS:END -->
+
+### Latest
+
+<!-- PORTFOLIO:ACTIVITY:START -->
+- **[pmf-signal](https://github.com/AnkitaSontakke/pmf-signal)** — new repo · 22h ago
+- **[roadmap-to-content](https://github.com/AnkitaSontakke/roadmap-to-content)** — new repo · 22h ago
+- **[humanize-writing](https://github.com/AnkitaSontakke/humanize-writing)** — new repo · 22h ago
+- **[launch-loop](https://github.com/AnkitaSontakke/launch-loop)** — new repo · 22h ago
+<!-- PORTFOLIO:ACTIVITY:END -->
+
+---
+
 <p>
   <a href="https://github.com/tinyhumansai"><img src="https://img.shields.io/badge/OpenHuman-FFC700?style=flat&logoColor=black" /></a>
   <a href="https://x.com/SontakkeAnkita"><img src="https://img.shields.io/badge/X-000000?logo=x&logoColor=white&style=flat" /></a>
@@ -21,5 +44,3 @@ I led the launch that took it to 32,000 GitHub stars and 50,000 signups in two w
   <a href="https://ankitasontakke.medium.com"><img src="https://img.shields.io/badge/Medium-000000?logo=medium&logoColor=white&style=flat" /></a>
   <a href="https://ankitasontakke.com"><img src="https://img.shields.io/badge/Website-4A4A4A?style=flat" /></a>
 </p>
-
-Open to leading product, product marketing, or growth. Remote, based in India. Reach me at sontakke.ankita0@gmail.com.
