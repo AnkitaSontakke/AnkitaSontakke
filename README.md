@@ -23,7 +23,7 @@ I led the launch that took it to 32,000 GitHub stars and 50,000 signups in two w
 | [**roadmap-to-content**](https://github.com/AnkitaSontakke/roadmap-to-content)<br>Reads a GitHub project board and returns a four-week content plan that never promises unshipped features | ⭐ 0 | 22h ago |
 | [**humanize-writing**](https://github.com/AnkitaSontakke/humanize-writing)<br>A Claude Code skill and a linter that strip AI writing tells out of prose. Runs in CI, scores a draft out of 100 | ⭐ 0 | 22h ago |
 | [**launch-loop**](https://github.com/AnkitaSontakke/launch-loop)<br>The launch system behind 32k GitHub stars in 14 days, plus a tool that measures whether a spike turned into a loop | ⭐ 0 | 22h ago |
-| [**medulla**](https://github.com/AnkitaSontakke/medulla)<br>A LLM model focused on high concurrency orchestration | ⭐ 999 | 1 month ago |
+| [**medulla**](https://github.com/AnkitaSontakke/medulla)<br>A LLM model focused on high concurrency orchestration | ⭐ 0 | 1 month ago |
 <!-- PORTFOLIO:REPOS:END -->
 
 ### Latest
