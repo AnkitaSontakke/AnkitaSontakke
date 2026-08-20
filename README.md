@@ -19,20 +19,20 @@ I led the launch that took it to 32,000 GitHub stars and 50,000 signups in two w
 <!-- PORTFOLIO:REPOS:START -->
 | Project | Stars | Last push |
 |---|---|---|
-| [**pmf-signal**](https://github.com/AnkitaSontakke/pmf-signal)<br>Turns a CSV of user feedback into a ranked list of the problems behind it | ⭐ 0 | 4 days ago |
-| [**roadmap-to-content**](https://github.com/AnkitaSontakke/roadmap-to-content)<br>Reads a GitHub project board and returns a four-week content plan that never promises unshipped features | ⭐ 0 | 4 days ago |
-| [**humanize-writing**](https://github.com/AnkitaSontakke/humanize-writing)<br>A Claude Code skill and a linter that strip AI writing tells out of prose. Runs in CI, scores a draft out of 100 | ⭐ 0 | 4 days ago |
-| [**launch-loop**](https://github.com/AnkitaSontakke/launch-loop)<br>The launch system behind 32k GitHub stars in 14 days, plus a tool that measures whether a spike turned into a loop | ⭐ 0 | 4 days ago |
+| [**pmf-signal**](https://github.com/AnkitaSontakke/pmf-signal)<br>Turns a CSV of user feedback into a ranked list of the problems behind it | ⭐ 0 | 5 days ago |
+| [**roadmap-to-content**](https://github.com/AnkitaSontakke/roadmap-to-content)<br>Reads a GitHub project board and returns a four-week content plan that never promises unshipped features | ⭐ 0 | 5 days ago |
+| [**humanize-writing**](https://github.com/AnkitaSontakke/humanize-writing)<br>A Claude Code skill and a linter that strip AI writing tells out of prose. Runs in CI, scores a draft out of 100 | ⭐ 0 | 5 days ago |
+| [**launch-loop**](https://github.com/AnkitaSontakke/launch-loop)<br>The launch system behind 32k GitHub stars in 14 days, plus a tool that measures whether a spike turned into a loop | ⭐ 0 | 5 days ago |
 | [**medulla**](https://github.com/AnkitaSontakke/medulla)<br>A LLM model focused on high concurrency orchestration | ⭐ 0 | 1 month ago |
 <!-- PORTFOLIO:REPOS:END -->
 
 ### Latest
 
 <!-- PORTFOLIO:ACTIVITY:START -->
-- **[pmf-signal](https://github.com/AnkitaSontakke/pmf-signal)** — new repo · 4 days ago
-- **[roadmap-to-content](https://github.com/AnkitaSontakke/roadmap-to-content)** — new repo · 4 days ago
-- **[humanize-writing](https://github.com/AnkitaSontakke/humanize-writing)** — new repo · 4 days ago
-- **[launch-loop](https://github.com/AnkitaSontakke/launch-loop)** — new repo · 4 days ago
+- **[pmf-signal](https://github.com/AnkitaSontakke/pmf-signal)** — new repo · 5 days ago
+- **[roadmap-to-content](https://github.com/AnkitaSontakke/roadmap-to-content)** — new repo · 5 days ago
+- **[humanize-writing](https://github.com/AnkitaSontakke/humanize-writing)** — new repo · 5 days ago
+- **[launch-loop](https://github.com/AnkitaSontakke/launch-loop)** — new repo · 5 days ago
 <!-- PORTFOLIO:ACTIVITY:END -->
 
 ---
