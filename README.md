@@ -1,6 +1,6 @@
 <h1>I'm Ankita 🛠️</h1>
 
-**Growth and product marketing at [OpenHuman](https://github.com/tinyhumansai)**, an open-source AI agent built at TinyHumans.
+**Growth and product marketing at [TinyHumans](https://github.com/tinyhumansai)**, an open-source AI agent built at TinyHumans.
 
 I led the launch that took it to 32,000 GitHub stars and 50,000 signups in two weeks, on distribution instead of ad spend. Before that, seven years of go-to-market for AI and Web3 products, including $849M of all-time-high TVL influenced across DeFi campaigns at ZeroLend. I build the tools I use to do the job, which is why this is a GitHub profile and not a portfolio site. Most of them are [Claude Code skills](https://github.com/AnkitaSontakke?tab=repositories) or small Python CLIs. Sometimes I write on [Medium](https://ankitasontakke.medium.com).
 
