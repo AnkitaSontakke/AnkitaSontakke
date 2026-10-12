@@ -1,0 +1,1208 @@
+<title>Moon Trades Redesign Spec</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=Work+Sans:wght@400;500;600;700&family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap">
+<style>
+  /* Document design: professional spec/brief — clean hierarchy, clear separation of spec notes from website copy */
+  :root {
+    --doc-bg: #FFFFFF;
+    --doc-fg: #1A1A2E;
+    --doc-muted: #64748B;
+    --doc-border: #E2E8F0;
+    --doc-accent: #0B1628;
+    --doc-accent-teal: #00C9A7;
+    --doc-surface: #F7F8FA;
+    --doc-copy-bg: #F0FDF9;
+    --doc-copy-border: #00C9A7;
+    --doc-note-bg: #EFF6FF;
+    --doc-note-border: #3B82F6;
+    --doc-warn-bg: #FFFBEB;
+    --doc-warn-border: #D4A843;
+    --font-display: 'Crimson Pro', Georgia, serif;
+    --font-body: 'Work Sans', system-ui, sans-serif;
+    --font-recommended-display: 'Syne', sans-serif;
+    --font-recommended-body: 'Plus Jakarta Sans', sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --doc-bg: #0F172A;
+      --doc-fg: #E2E8F0;
+      --doc-muted: #94A3B8;
+      --doc-border: #334155;
+      --doc-accent: #E2E8F0;
+      --doc-surface: #1E293B;
+      --doc-copy-bg: #0D2818;
+      --doc-copy-border: #00C9A7;
+      --doc-note-bg: #0C1929;
+      --doc-note-border: #3B82F6;
+      --doc-warn-bg: #1C1508;
+      --doc-warn-border: #D4A843;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --doc-bg: #0F172A;
+    --doc-fg: #E2E8F0;
+    --doc-muted: #94A3B8;
+    --doc-border: #334155;
+    --doc-accent: #E2E8F0;
+    --doc-surface: #1E293B;
+    --doc-copy-bg: #0D2818;
+    --doc-copy-border: #00C9A7;
+    --doc-note-bg: #0C1929;
+    --doc-note-border: #3B82F6;
+    --doc-warn-bg: #1C1508;
+    --doc-warn-border: #D4A843;
+    color-scheme: dark;
+  }
+  body {
+    background: var(--doc-bg);
+    color: var(--doc-fg);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    max-width: 820px;
+    margin: 0 auto;
+    padding-inline: 24px;
+    padding-block: 0;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    line-height: 1.2;
+    text-wrap: balance;
+  }
+  h1 { font-size: 2.2rem; font-weight: 700; margin: 0 0 0.5rem; }
+  h2 { font-size: 1.6rem; font-weight: 600; margin: 2.5rem 0 1rem; padding-top: 2rem; border-top: 2px solid var(--doc-border); }
+  h3 { font-size: 1.25rem; font-weight: 600; margin: 2rem 0 0.75rem; }
+  h4 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--doc-muted); text-transform: uppercase; letter-spacing: 0.05em; font-family: var(--font-body); }
+  p { margin: 0 0 1rem; }
+  .cover {
+    padding: 3rem 0 2rem;
+    border-bottom: 3px solid var(--doc-accent);
+    margin-bottom: 2rem;
+  }
+  .cover .eyebrow {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--doc-accent-teal);
+    margin-bottom: 0.75rem;
+  }
+  .cover .subtitle {
+    font-size: 1.1rem;
+    color: var(--doc-muted);
+    margin-top: 0.25rem;
+    max-width: 600px;
+  }
+  .cover .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--doc-muted);
+  }
+  .cover .meta strong { color: var(--doc-fg); }
+
+  /* Table of contents */
+  .toc {
+    background: var(--doc-surface);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+  }
+  .toc h3 { margin-top: 0; }
+  .toc ol {
+    margin: 0; padding-left: 1.5rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 2rem;
+  }
+  .toc li { font-size: 0.9rem; }
+  .toc a { color: var(--doc-accent-teal); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  @media (max-width: 560px) {
+    .toc ol { grid-template-columns: 1fr; }
+  }
+
+  /* Copy blocks — the actual website copy */
+  .copy-block {
+    background: var(--doc-copy-bg);
+    border-left: 3px solid var(--doc-copy-border);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 6px 6px 0;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+  }
+  .copy-block .copy-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--doc-copy-border);
+    margin-bottom: 0.5rem;
+  }
+  .copy-block h5 {
+    font-family: var(--font-recommended-display);
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem;
+    line-height: 1.2;
+  }
+  .copy-block h6 {
+    font-family: var(--font-recommended-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0 0 0.4rem;
+  }
+  .copy-block p { margin: 0 0 0.75rem; font-family: var(--font-recommended-body); }
+  .copy-block p:last-child { margin-bottom: 0; }
+  .copy-block .eyebrow-copy {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--doc-copy-border);
+    margin-bottom: 0.25rem;
+  }
+
+  /* Layout notes */
+  .layout-note {
+    background: var(--doc-note-bg);
+    border-left: 3px solid var(--doc-note-border);
+    padding: 1rem 1.25rem;
+    border-radius: 0 6px 6px 0;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    color: var(--doc-muted);
+  }
+  .layout-note strong { color: var(--doc-fg); }
+  .layout-note .note-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--doc-note-border);
+    margin-bottom: 0.4rem;
+  }
+
+  /* Technical notes */
+  .tech-note {
+    background: var(--doc-warn-bg);
+    border-left: 3px solid var(--doc-warn-border);
+    padding: 1rem 1.25rem;
+    border-radius: 0 6px 6px 0;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+  }
+  .tech-note .note-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--doc-warn-border);
+    margin-bottom: 0.4rem;
+  }
+
+  /* Color swatches */
+  .palette {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin: 1.5rem 0;
+  }
+  .swatch {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--doc-border);
+  }
+  .swatch-color {
+    height: 64px;
+    display: flex; align-items: flex-end; justify-content: flex-end;
+    padding: 6px 10px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: monospace;
+  }
+  .swatch-label {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    background: var(--doc-surface);
+  }
+
+  /* Type samples */
+  .type-sample {
+    padding: 1.5rem;
+    background: var(--doc-surface);
+    border-radius: 8px;
+    margin: 1rem 0;
+  }
+  .type-sample .sample-display {
+    font-family: var(--font-recommended-display);
+    font-weight: 800;
+    font-size: 1.8rem;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .type-sample .sample-heading {
+    font-family: var(--font-recommended-body);
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .type-sample .sample-body {
+    font-family: var(--font-recommended-body);
+    font-weight: 400;
+    font-size: 0.95rem;
+    color: var(--doc-muted);
+    line-height: 1.6;
+  }
+  .type-sample .sample-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--doc-muted);
+    margin-bottom: 0.25rem;
+    margin-top: 1rem;
+  }
+  .type-sample .sample-label:first-child { margin-top: 0; }
+
+  /* Page section cards */
+  .section-card {
+    background: var(--doc-surface);
+    border: 1px solid var(--doc-border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .section-card h4 { margin-top: 0; }
+
+  /* Page divider with label */
+  .page-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3rem 0 1.5rem;
+    padding-top: 2rem;
+    border-top: 3px solid var(--doc-accent-teal);
+  }
+  .page-divider .page-num {
+    background: var(--doc-accent-teal);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+  .page-divider h2 {
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.5rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 560px) {
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.3rem; }
+    .palette { grid-template-columns: repeat(2, 1fr); }
+    .cover .meta { gap: 0.75rem; flex-direction: column; }
+  }
+
+  /* Utility */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 1rem 0;
+  }
+  @media (max-width: 560px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+  .cta-tag {
+    display: inline-block;
+    background: var(--doc-accent-teal);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    margin-top: 0.5rem;
+  }
+  hr {
+    border: none;
+    border-top: 1px solid var(--doc-border);
+    margin: 1.5rem 0;
+  }
+  ul, ol { padding-left: 1.25rem; }
+  li { margin-bottom: 0.4rem; font-size: 0.95rem; }
+  code {
+    background: var(--doc-surface);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.85rem;
+  }
+</style>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="eyebrow">Website Redesign Specification</div>
+  <h1>Moon Trades Technologies</h1>
+  <p class="subtitle">Design spec, full copy, and implementation guide for the 5-page mobile-first website refresh — Home, PEBBLE™/Solutions, About, Press/News, and Contact.</p>
+  <div class="meta">
+    <span><strong>Client:</strong> Moon Trades Technologies</span>
+    <span><strong>Scope:</strong> 5 pages</span>
+    <span><strong>Direction:</strong> Dark-to-light hybrid</span>
+    <span><strong>Priority:</strong> Mobile-first</span>
+    <span><strong>Target launch:</strong> Oct 30</span>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+  <h3>Contents</h3>
+  <ol>
+    <li><a href="#design-system">Design System</a></li>
+    <li><a href="#home">Page: Home</a></li>
+    <li><a href="#pebble">Page: PEBBLE™ / Solutions</a></li>
+    <li><a href="#about">Page: About</a></li>
+    <li><a href="#press">Page: Press & News</a></li>
+    <li><a href="#contact">Page: Contact</a></li>
+    <li><a href="#technical">Technical Notes</a></li>
+    <li><a href="#mobile">Mobile & QA</a></li>
+  </ol>
+</div>
+
+<!-- ============================================================ -->
+<!-- DESIGN SYSTEM -->
+<!-- ============================================================ -->
+<h2 id="design-system">1. Design System</h2>
+
+<h3>Color Palette</h3>
+<p>A dark-to-light hybrid rhythm: dark navy hero sections alternate with light content areas throughout each page. This creates visual drama while keeping body content highly readable.</p>
+
+<h4>Primary Colors</h4>
+<div class="palette">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#0B1628;color:#fff">#0B1628</div>
+    <div class="swatch-label">Deep Navy<br><small>Hero backgrounds</small></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#162036;color:#fff">#162036</div>
+    <div class="swatch-label">Midnight<br><small>Secondary dark</small></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#F7F8FA;color:#333">#F7F8FA</div>
+    <div class="swatch-label">Cool White<br><small>Light sections</small></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#FFFFFF;color:#333;border-bottom:1px solid #E2E8F0">#FFFFFF</div>
+    <div class="swatch-label">White<br><small>Cards, content</small></div>
+  </div>
+</div>
+
+<h4>Accent Colors</h4>
+<div class="palette">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#00C9A7;color:#fff">#00C9A7</div>
+    <div class="swatch-label">Teal<br><small>Primary CTA, highlights</small></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#3B82F6;color:#fff">#3B82F6</div>
+    <div class="swatch-label">Electric Blue<br><small>Data, links, secondary</small></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#D4A843;color:#fff">#D4A843</div>
+    <div class="swatch-label">Amber<br><small>Warmth, minerals, tertiary</small></div>
+  </div>
+</div>
+
+<h4>Text Colors</h4>
+<div class="palette">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#1A2332;color:#fff">#1A2332</div>
+    <div class="swatch-label">Dark text<br><small>On light backgrounds</small></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#E8ECF1;color:#333">#E8ECF1</div>
+    <div class="swatch-label">Light text<br><small>On dark backgrounds</small></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#64748B;color:#fff">#64748B</div>
+    <div class="swatch-label">Muted<br><small>Secondary (light bg)</small></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#94A3B8;color:#333">#94A3B8</div>
+    <div class="swatch-label">Muted Light<br><small>Secondary (dark bg)</small></div>
+  </div>
+</div>
+
+<h3>Typography</h3>
+<p>A two-family pairing that balances tech authority with approachability. Both are available in Framer via Google Fonts.</p>
+
+<div class="type-sample">
+  <div class="sample-label">Display — Syne 800</div>
+  <div class="sample-display">Find minerals before you drill.</div>
+  <div class="sample-label">Headings & Body — Plus Jakarta Sans</div>
+  <div class="sample-heading">An AI-powered terrain analysis platform</div>
+  <div class="sample-body">PEBBLE™ combines satellite imagery, field data, and AI to pinpoint high-probability drilling targets — saving mining companies millions in failed exploration.</div>
+</div>
+
+<div class="layout-note">
+  <div class="note-label">Framer Implementation</div>
+  <p style="margin:0"><strong>Display (Syne 800):</strong> Hero headlines only. Size: 56–72px desktop, 36–44px mobile.<br>
+  <strong>Headings (Plus Jakarta Sans 700):</strong> Section titles, card headings. Size: 32–40px desktop, 24–28px mobile.<br>
+  <strong>Subheads (Plus Jakarta Sans 600):</strong> 18–20px.<br>
+  <strong>Body (Plus Jakarta Sans 400):</strong> 16–18px, line-height 1.6.<br>
+  <strong>Labels (Plus Jakarta Sans 600):</strong> 12–14px, uppercase, letter-spacing 0.1em.</p>
+</div>
+
+<h3>Layout Rhythm</h3>
+<p>Each page alternates dark and light sections to create visual rhythm. The pattern:</p>
+<div class="section-card">
+  <div style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem;">
+    <div style="background:#0B1628;color:#E8ECF1;padding:10px 14px;border-radius:4px;">🌑 <strong>Dark Section</strong> — Hero, bold statements, CTAs</div>
+    <div style="background:#F7F8FA;color:#1A2332;padding:10px 14px;border-radius:4px;">☀️ <strong>Light Section</strong> — Content, features, details</div>
+    <div style="background:#0B1628;color:#E8ECF1;padding:10px 14px;border-radius:4px;">🌑 <strong>Dark Section</strong> — Process, vision, emphasis</div>
+    <div style="background:#F7F8FA;color:#1A2332;padding:10px 14px;border-radius:4px;">☀️ <strong>Light Section</strong> — Details, proof points</div>
+    <div style="background:#0B1628;color:#E8ECF1;padding:10px 14px;border-radius:4px;">🌑 <strong>Dark Section</strong> — Final CTA footer</div>
+  </div>
+</div>
+
+<h3>Component Patterns</h3>
+
+<div class="grid-2">
+  <div class="section-card">
+    <h4>Buttons</h4>
+    <p style="font-size:0.85rem;margin:0"><strong>Primary:</strong> Teal (#00C9A7) fill, white text, 12px 28px padding, 6px radius, 600 weight.<br>
+    <strong>Secondary:</strong> Transparent, 1px white/dark border, matching text, same dimensions.<br>
+    <strong>Hover:</strong> Slight brightness shift, subtle scale(1.02).</p>
+  </div>
+  <div class="section-card">
+    <h4>Cards</h4>
+    <p style="font-size:0.85rem;margin:0"><strong>On light bg:</strong> White fill, 1px #E2E8F0 border, 12px radius, 24px padding.<br>
+    <strong>On dark bg:</strong> #162036 fill, 1px #1E3A5F border, 12px radius, 24px padding.<br>
+    <strong>Hover:</strong> Subtle border color shift to teal.</p>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="section-card">
+    <h4>Eyebrow Labels</h4>
+    <p style="font-size:0.85rem;margin:0">Plus Jakarta Sans 600, 12px, uppercase, 0.1em spacing. Color: Teal on dark backgrounds, Electric Blue on light backgrounds.</p>
+  </div>
+  <div class="section-card">
+    <h4>Stat Numbers</h4>
+    <p style="font-size:0.85rem;margin:0">Syne 800, 48–56px, teal color. Label below in Plus Jakarta Sans 400, 14px, muted color. Use tabular-nums.</p>
+  </div>
+</div>
+
+<h3>Navigation</h3>
+<div class="layout-note">
+  <div class="note-label">Nav Bar</div>
+  <p style="margin:0"><strong>Desktop:</strong> Sticky top bar, transparent over hero → solid dark on scroll. Moon Trades logo left, nav links center (Home, PEBBLE™, About, News, Contact), "Book a Demo" teal CTA button right.<br>
+  <strong>Mobile:</strong> Logo left, hamburger right. Slide-in menu from right, dark background, full-height. Links stacked, CTA at bottom.</p>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PAGE 1: HOME -->
+<!-- ============================================================ -->
+<div class="page-divider" id="home">
+  <span class="page-num">PAGE 1</span>
+  <h2>Home</h2>
+</div>
+
+<p>The homepage is the primary landing experience. It must immediately communicate what Moon Trades does, for whom, and why it matters — then direct visitors to the right next step based on their role (client, investor, partner).</p>
+
+<!-- HOME: HERO -->
+<h3>Section 1: Hero</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy (#0B1628), full-width. Optional: subtle particle/grid animation or static satellite terrain visual as background with low opacity.<br>
+  <strong>Content:</strong> Centered. Eyebrow label → Headline (Syne 800, large) → Subheadline → Two CTAs side by side.<br>
+  <strong>Height:</strong> Content-driven, approximately 85vh on desktop. Do not push all content below the fold.<br>
+  <strong>Mobile:</strong> Stack CTAs vertically, reduce headline to 36px.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">Autonomous Mineral Exploration</div>
+  <h5>Find minerals before you drill.</h5>
+  <p>PEBBLE™ combines satellite imagery, field data, and AI to pinpoint high-probability drilling targets — saving mining companies millions in failed exploration.</p>
+  <span class="cta-tag">Book a Demo</span> <span class="cta-tag" style="background:transparent;border:1px solid var(--doc-copy-border);color:var(--doc-fg)">See How It Works ↓</span>
+</div>
+
+<!-- HOME: STATS BAR -->
+<h3>Section 2: Stats Bar</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> White (#FFFFFF).<br>
+  <strong>Content:</strong> Three stats in a row (grid, 3 columns on desktop, stacked on mobile). Each: large number + short label below. Teal number color. Thin top and bottom borders.<br>
+  <strong>Purpose:</strong> Immediate credibility. These numbers are public and sourced from Moon Trades' own materials.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h6>$4.2B</h6>
+  <p>wasted annually on failed mineral exploration worldwide</p>
+  <hr style="border-color:var(--doc-copy-border);opacity:0.3">
+  <h6>30%+</h6>
+  <p>improvement in drilling success rates in early tests</p>
+  <hr style="border-color:var(--doc-copy-border);opacity:0.3">
+  <h6>50×</h6>
+  <p>more data collected than traditional field teams</p>
+</div>
+
+<!-- HOME: CAPABILITIES -->
+<h3>Section 3: What PEBBLE™ Does</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Cool White (#F7F8FA).<br>
+  <strong>Content:</strong> Eyebrow + section heading, then 3 feature cards in a row (flex/grid). Each card: icon or image at top, heading, short description.<br>
+  <strong>Cards:</strong> White fill, subtle border, 12px radius. On mobile, stack to single column.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">What PEBBLE™ Does</div>
+  <h5>One platform. Three layers of intelligence.</h5>
+  <p>&nbsp;</p>
+
+  <h6>Pre-Drilling Predictions</h6>
+  <p>Our machine learning models analyze existing geospatial datasets to identify high-probability drilling zones — before a single hole is drilled. Less guesswork, lower costs, better outcomes.</p>
+
+  <h6>Geospatial Intelligence</h6>
+  <p>Upload your terrain data to our secure platform, run AI analysis, and get actionable insights that guide exploration decisions in real time — not weeks later.</p>
+
+  <h6>Autonomous Data Collection</h6>
+  <p>PEBBLE™'s autonomous vehicles use XRF and LIBS sensors to collect 50× more data than traditional field teams, operating around the clock in environments too harsh for people.</p>
+</div>
+
+<!-- HOME: HOW IT WORKS -->
+<h3>Section 4: How It Works</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy (#0B1628).<br>
+  <strong>Content:</strong> Three steps in a horizontal flow, connected by a subtle line/arrow motif. Each step: step number (01/02/03), heading, short description. Light text on dark.<br>
+  <strong>Mobile:</strong> Stack vertically with vertical connecting line.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">The Process</div>
+  <h5>From raw data to drill-ready targets.</h5>
+  <p>&nbsp;</p>
+
+  <h6>01 — Upload & Integrate</h6>
+  <p>Bring in your satellite imagery, historical drill logs, and terrain data. PEBBLE™ ingests and normalizes it all into a single coherent model.</p>
+
+  <h6>02 — Analyze & Predict</h6>
+  <p>Our AI cross-references your data with geochemical, geophysical, and spectral layers to identify high-probability zones and rank targets by confidence.</p>
+
+  <h6>03 — Explore & Validate</h6>
+  <p>Deploy autonomous vehicles for on-the-ground verification, collecting real-time sensor data to confirm or refine targets before committing to drill.</p>
+</div>
+
+<!-- HOME: VISION -->
+<h3>Section 5: Beyond Earth</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Cool White (#F7F8FA).<br>
+  <strong>Content:</strong> Split layout — text left (60%), atmospheric image right (40%). Image: lunar surface, rover, or space-themed visual from existing brand assets.<br>
+  <strong>Mobile:</strong> Image on top, text below.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">Beyond Earth</div>
+  <h5>Built for the harshest terrains — on any planet.</h5>
+  <p>The same AI and autonomous systems that de-risk mining exploration on Earth are being designed for off-world resource discovery. We're working with the Canadian Space Agency to develop in-situ resource utilization for lunar exploration.</p>
+  <p>The technology we build today for mines in Northern Ontario will find resources on the Moon tomorrow.</p>
+</div>
+
+<!-- HOME: CTA -->
+<h3>Section 6: Final CTA</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy (#0B1628), full-width.<br>
+  <strong>Content:</strong> Centered. Heading + subtext + two CTAs. Generous padding (80px+ top/bottom).</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h5>Ready to reduce your exploration risk?</h5>
+  <p>Talk to our team about how PEBBLE™ can transform your next project.</p>
+  <span class="cta-tag">Book a Demo</span> <span class="cta-tag" style="background:transparent;border:1px solid var(--doc-copy-border);color:var(--doc-fg)">Contact Us</span>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PAGE 2: PEBBLE / SOLUTIONS -->
+<!-- ============================================================ -->
+<div class="page-divider" id="pebble">
+  <span class="page-num">PAGE 2</span>
+  <h2>PEBBLE™ / Solutions</h2>
+</div>
+
+<p>This page is the deep dive for technical audiences — mining professionals, geologists, and technical evaluators. It should feel authoritative and detailed while remaining readable.</p>
+
+<!-- PEBBLE: HERO -->
+<h3>Section 1: Hero</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy. Consider a subtle satellite terrain map overlay at low opacity.<br>
+  <strong>Content:</strong> Left-aligned. Eyebrow → headline → subheadline → single CTA.<br>
+  <strong>Right side (desktop):</strong> Product screenshot or abstract platform visualization.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">PEBBLE™ Platform</div>
+  <h5>The Google Maps of mining.</h5>
+  <p>An AI-powered terrain analysis and geospatial intelligence platform that changes how minerals are found — combining satellite data, ground truth, and autonomous sensing into one workflow.</p>
+  <span class="cta-tag">Book a Demo</span>
+</div>
+
+<!-- PEBBLE: PROBLEM -->
+<h3>Section 2: The Problem</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> White.<br>
+  <strong>Content:</strong> Two-column text block. Left: large stat callout ("1 in 1,000" in Syne 800, teal). Right: explanation text. Full-width on mobile.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h5>The $4.2 billion problem.</h5>
+  <p>Every year, the mining industry spends $4.2 billion on exploration that leads nowhere. Only 1 in 1,000 exploration sites proves economically viable. Traditional methods rely on manual sampling, external lab analysis that takes weeks, and scattered datasets that never get integrated.</p>
+  <p>The data to make better decisions already exists — in satellite archives, drill logs, and geochemical surveys accumulated over decades. The industry doesn't have a data problem. It has a data interpretation problem.</p>
+  <p>PEBBLE™ solves it.</p>
+</div>
+
+<!-- PEBBLE: THREE LAYERS -->
+<h3>Section 3: Three Layers of Intelligence</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy (#0B1628).<br>
+  <strong>Content:</strong> Section heading, then three horizontal cards or stacked panels. Each panel: icon/illustration, heading, detailed description. Consider a visual diagram showing the three layers converging.<br>
+  <strong>Mobile:</strong> Stack vertically.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">The Platform</div>
+  <h5>Three layers of intelligence. One platform.</h5>
+  <p>&nbsp;</p>
+
+  <h6>Layer 1: Satellite & Aerial Data</h6>
+  <p>High-resolution satellite imagery and aerial surveys form the foundation. PEBBLE™ processes multispectral and hyperspectral data to identify geological signatures invisible to the human eye — mapping mineralogy, structure, and alteration zones from orbit.</p>
+
+  <h6>Layer 2: Ground Truth & Historical Data</h6>
+  <p>Historical drill logs, geochemical surveys, geological maps, and field observations are integrated and cross-referenced with satellite data. PEBBLE™ normalizes decades of scattered datasets into a single, queryable terrain model.</p>
+
+  <h6>Layer 3: Autonomous Sensing</h6>
+  <p>PEBBLE™'s autonomous vehicles carry XRF (X-ray fluorescence) and LIBS (laser-induced breakdown spectroscopy) sensors for real-time, in-the-field geochemical analysis. They operate in terrain too remote, dangerous, or extreme for human teams — around the clock, in any weather.</p>
+</div>
+
+<!-- PEBBLE: FEATURES -->
+<h3>Section 4: Features</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Cool White (#F7F8FA).<br>
+  <strong>Content:</strong> 2×2 grid of feature cards. Each: icon, heading, description. White card, subtle border.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">Capabilities</div>
+  <h5>Built for real exploration workflows.</h5>
+  <p>&nbsp;</p>
+
+  <h6>Real-Time Field Analysis</h6>
+  <p>Get results while you're still on-site. PEBBLE™ processes sensor and satellite data in the field, so teams make decisions before moving on — not weeks later when external labs return results.</p>
+
+  <h6>Secure SaaS Platform</h6>
+  <p>Upload, analyze, and collaborate through our cloud platform. Role-based access and encryption keep your proprietary data protected. No hardware to install.</p>
+
+  <h6>Multi-Source Data Fusion</h6>
+  <p>PEBBLE™ normalizes and cross-references satellite imagery, LiDAR, drill logs, geochemical surveys, and sensor data into one coherent model — no manual integration required.</p>
+
+  <h6>Extreme Environment Operation</h6>
+  <p>Our autonomous vehicles operate in terrain too dangerous or remote for human teams. Data-denied navigation keeps them running where GPS and communication are unreliable.</p>
+</div>
+
+<!-- PEBBLE: USE CASES -->
+<h3>Section 5: Use Cases</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy.<br>
+  <strong>Content:</strong> Horizontal scrollable cards (desktop) or vertically stacked (mobile). Each card: use case name + one-line description. Teal left border accent.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">Applications</div>
+  <h5>Where PEBBLE™ delivers.</h5>
+  <p>&nbsp;</p>
+
+  <h6>Critical Mineral Exploration</h6>
+  <p>Identify lithium, cobalt, nickel, and rare earth deposits with higher confidence before committing to drill programs.</p>
+
+  <h6>Brownfield Re-Evaluation</h6>
+  <p>Reanalyze existing mining sites with modern AI to find deposits that previous methods missed.</p>
+
+  <h6>Environmental Baseline Assessment</h6>
+  <p>Map terrain conditions and contamination risk before, during, and after mining operations.</p>
+
+  <h6>Agricultural Terrain Analysis</h6>
+  <p>The same geospatial intelligence that finds minerals can characterize soil and terrain for precision agriculture.</p>
+
+  <h6>Space Resource Exploration</h6>
+  <p>ISRU-ready technology designed for lunar and planetary surface prospecting in partnership with the Canadian Space Agency.</p>
+</div>
+
+<!-- PEBBLE: CTA -->
+<h3>Section 6: CTA</h3>
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h5>See PEBBLE™ in action.</h5>
+  <p>Book a 30-minute demo with our team and see how the platform works with your data.</p>
+  <span class="cta-tag">Book a Demo</span> <span class="cta-tag" style="background:transparent;border:1px solid var(--doc-copy-border);color:var(--doc-fg)">Download Overview PDF</span>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PAGE 3: ABOUT -->
+<!-- ============================================================ -->
+<div class="page-divider" id="about">
+  <span class="page-num">PAGE 3</span>
+  <h2>About</h2>
+</div>
+
+<p>The About page builds trust and human connection. For investors and partners, it establishes credibility. Dr. Wintta's story is genuinely compelling — aerospace background, SpaceX, first-generation PhD — and should be front and center.</p>
+
+<!-- ABOUT: HERO -->
+<h3>Section 1: Hero</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy.<br>
+  <strong>Content:</strong> Centered headline + subheadline. Shorter hero than homepage — this page is content-heavy.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h5>We build the tools that find what's underground.</h5>
+  <p>Moon Trades Technologies is a Toronto-based deep-tech startup using AI and autonomous systems to transform how the world discovers critical minerals.</p>
+</div>
+
+<!-- ABOUT: FOUNDER -->
+<h3>Section 2: Founder Story</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> White.<br>
+  <strong>Content:</strong> Two-column — founder photo left (40%), text right (60%). Photo: use existing headshot from brand assets, or the image from the Elevate Cross Country Tour. Round or slightly rounded frame for the photo.<br>
+  <strong>Mobile:</strong> Photo centered above text, smaller.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">Our Founder</div>
+  <h5>Dr. Wintta Ghebreiyesus</h5>
+  <h6>Founder & CEO</h6>
+  <p>At ten years old, Wintta watched the Space Shuttle Columbia break apart on re-entry and decided to become an engineer. That decision led to a degree in aerospace engineering at Toronto Metropolitan University, a stint on SpaceX's Hyperloop project, and a PhD in aircraft cabin acoustics.</p>
+  <p>After speaking with more than 100 professionals across the mining industry, she identified a staggering problem: $4.2 billion wasted every year on exploration that fails. The data to make better decisions existed — scattered across petabytes of geological records — but nobody was using it.</p>
+  <p>Her response was PEBBLE™.</p>
+  <p>"The mining industry doesn't have a data problem. They have a data interpretation problem. With AI, we can use that data more efficiently and go further than ever before."</p>
+</div>
+
+<!-- ABOUT: MISSION -->
+<h3>Section 3: Mission & Vision</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy.<br>
+  <strong>Content:</strong> Two side-by-side panels. Left: "Our Mission." Right: "Our Vision." Large text, centered. On mobile, stack vertically.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h6>Our Mission</h6>
+  <p>To make mineral exploration safer, faster, and more sustainable — reducing the environmental footprint of resource discovery while improving outcomes for the companies that power the clean energy transition.</p>
+  <hr style="border-color:var(--doc-copy-border);opacity:0.3">
+  <h6>Our Vision</h6>
+  <p>The same technology that finds critical minerals on Earth will discover resources on the Moon and Mars. We're building for both — because exploration doesn't stop at the atmosphere.</p>
+</div>
+
+<!-- ABOUT: MILESTONES -->
+<h3>Section 4: Milestones</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Cool White (#F7F8FA).<br>
+  <strong>Content:</strong> Vertical timeline with alternating left/right entries (desktop). Teal connecting line. Each entry: year badge + description. On mobile: single column, all left-aligned.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">Our Journey</div>
+  <p>&nbsp;</p>
+
+  <h6>2024 — Founded</h6>
+  <p>Moon Trades Technologies launches through the Nobellum tech accelerator, serving the Black entrepreneurial community.</p>
+
+  <h6>2025 — Accelerator Programs</h6>
+  <p>Accepted into the Black Founders Network at the University of Toronto and Spark Centre's Landing-Pad Accelerator Program.</p>
+
+  <h6>2025 — Research Partnerships</h6>
+  <p>Collaboration with Ontario Tech University and access to the ACE climatic wind tunnel for autonomous vehicle testing.</p>
+
+  <h6>2026 — First Pilots</h6>
+  <p>Preparing for first series of pilot projects, onboarding team members, and scaling operations in Durham Region.</p>
+
+  <h6>Next — Space Applications</h6>
+  <p>Working with the Canadian Space Agency and international partners on in-situ resource utilization for lunar exploration.</p>
+</div>
+
+<!-- ABOUT: PARTNERS -->
+<h3>Section 5: Partners & Ecosystem</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> White.<br>
+  <strong>Content:</strong> Section heading + logo grid. Grayscale logos, colored on hover. 3-4 per row on desktop, 2 per row on mobile.<br>
+  <strong>Logos needed:</strong> Nobellum, Spark Centre, ventureLAB, Ontario Tech University, University of Toronto (Black Founders Network), Canadian Space Agency.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">Our Ecosystem</div>
+  <h5>Backed by Canada's innovation network.</h5>
+  <p>We're supported by leading accelerators, research institutions, and government partners committed to building the next generation of clean technology.</p>
+</div>
+
+<!-- ABOUT: CTA -->
+<h3>Section 6: CTA</h3>
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h5>Want to join the mission?</h5>
+  <p>We're always looking for collaborators, advisors, and team members who share our vision for smarter, safer exploration.</p>
+  <span class="cta-tag">Get in Touch</span>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PAGE 4: PRESS & NEWS -->
+<!-- ============================================================ -->
+<div class="page-divider" id="press">
+  <span class="page-num">PAGE 4</span>
+  <h2>Press & News</h2>
+</div>
+
+<p>This page serves media contacts and investors doing due diligence. It should feel curated, not cluttered. The media kit section is a key deliverable per the job description.</p>
+
+<!-- PRESS: HERO -->
+<h3>Section 1: Hero</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy. Short hero — just a headline and subtext.<br>
+  <strong>Content:</strong> Centered, minimal.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h5>News & Press</h5>
+  <p>Coverage of Moon Trades Technologies and the PEBBLE™ platform from industry and media.</p>
+</div>
+
+<!-- PRESS: FEATURED -->
+<h3>Section 2: Featured Coverage</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> White.<br>
+  <strong>Content:</strong> Featured article card at top (large, with image from the Durham article). Below: 2-column grid of smaller press cards. Each card: source logo/name, headline, date, "Read →" link.<br>
+  <strong>Mobile:</strong> Single column, all cards stacked.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy — Featured</div>
+  <div class="eyebrow-copy">Featured</div>
+  <h6>"Building the Future of Climate-Conscious Mining Innovation"</h6>
+  <p>Invest Durham profiles Moon Trades Technologies and founder Dr. Wintta Ghebreiyesus on how PEBBLE™ is revolutionizing mineral exploration while reducing the environmental footprint of resource discovery.</p>
+  <p style="font-size:0.85rem;color:var(--doc-muted)">Invest Durham — May 2026</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy — Additional Coverage</div>
+
+  <h6>"Innovation Beneath the Surface"</h6>
+  <p style="font-size:0.85rem;color:var(--doc-muted)">Spark Centre — May 2026</p>
+  <hr style="border-color:var(--doc-copy-border);opacity:0.3">
+
+  <h6>Moon Trades Technologies Portfolio Feature</h6>
+  <p style="font-size:0.85rem;color:var(--doc-muted)">ventureLAB — 2025</p>
+  <hr style="border-color:var(--doc-copy-border);opacity:0.3">
+
+  <h6>Moon Trades Company Profile</h6>
+  <p style="font-size:0.85rem;color:var(--doc-muted)">PitchBook — 2026</p>
+  <hr style="border-color:var(--doc-copy-border);opacity:0.3">
+
+  <h6>Landing-Pad Accelerator Interview</h6>
+  <p style="font-size:0.85rem;color:var(--doc-muted)">Spark Centre / YouTube — 2025</p>
+</div>
+
+<!-- PRESS: MEDIA KIT -->
+<h3>Section 3: Media Kit</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Cool White (#F7F8FA).<br>
+  <strong>Content:</strong> Section heading + description + downloadable items grid. Each item: thumbnail/icon, name, file type badge, download button. Items: Logo pack, Founder headshots, Product screenshots, Company fact sheet, Boilerplate copy.<br>
+  <strong>Implementation:</strong> In Framer, these can link to a Google Drive folder or hosted ZIP files. For the mockup, show the layout with placeholder download buttons.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <div class="eyebrow-copy">For Media</div>
+  <h5>Media Kit</h5>
+  <p>Download brand assets, founder photos, product visuals, and press materials. For custom requests or interview scheduling, contact our press team directly.</p>
+  <p>&nbsp;</p>
+
+  <h6>Downloadable Assets:</h6>
+  <p>
+    <strong>Logo Pack</strong> — Moon Trades logo in SVG, PNG (dark & light versions)<br>
+    <strong>Founder Photos</strong> — Dr. Wintta Ghebreiyesus headshots (high-res)<br>
+    <strong>Product Visuals</strong> — PEBBLE™ platform screenshots, rover images<br>
+    <strong>Company Fact Sheet</strong> — One-page overview (PDF)<br>
+    <strong>Boilerplate</strong> — Approved company description for press use
+  </p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy — Boilerplate (for media use)</div>
+  <p><strong>About Moon Trades Technologies</strong></p>
+  <p>Moon Trades Technologies is a Toronto-based deep-tech startup building PEBBLE™, an AI-powered terrain analysis and geospatial intelligence platform that transforms mineral exploration. By combining satellite data, historical records, and autonomous vehicle sensing, PEBBLE™ helps mining companies identify high-probability drilling targets — reducing exploration costs, improving success rates, and lowering the environmental footprint of resource discovery. Founded by aerospace engineer Dr. Wintta Ghebreiyesus, Moon Trades is supported by Nobellum, Spark Centre, ventureLAB, and the University of Toronto's Black Founders Network. The company is also developing space applications for lunar resource exploration in collaboration with the Canadian Space Agency.</p>
+</div>
+
+<!-- PRESS: CONTACT -->
+<h3>Section 4: Press Contact</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy. Simple CTA section.<br>
+  <strong>Content:</strong> Centered heading + email address + note about response time.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h5>Press Inquiries</h5>
+  <p>For media requests, interviews, or custom asset needs, reach our press team at <strong>press@moontrades.space</strong> (or whichever email Moon Trades designates). We typically respond within 24 hours.</p>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- PAGE 5: CONTACT -->
+<!-- ============================================================ -->
+<div class="page-divider" id="contact">
+  <span class="page-num">PAGE 5</span>
+  <h2>Contact</h2>
+</div>
+
+<p>The contact page must serve three distinct audiences (clients, investors, partners) while capturing leads. The current site has a basic form — this redesign routes visitors by intent and adds email capture.</p>
+
+<!-- CONTACT: HERO -->
+<h3>Section 1: Hero</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy. Short hero.<br>
+  <strong>Content:</strong> Centered headline + subheadline.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h5>Let's talk.</h5>
+  <p>Whether you're a mining company exploring new sites, an investor evaluating opportunities, or a potential partner — we'd like to hear from you.</p>
+</div>
+
+<!-- CONTACT: AUDIENCE CARDS -->
+<h3>Section 2: Audience Routing Cards</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> White.<br>
+  <strong>Content:</strong> Three cards in a row (grid). Each card: icon, audience name, short description, CTA button. Cards should feel distinct — consider teal, blue, and amber accent borders or icons to differentiate.<br>
+  <strong>Behavior:</strong> Clicking a card scrolls to the contact form with the appropriate "I am a..." option pre-selected, or opens the Calendly link.<br>
+  <strong>Mobile:</strong> Stack vertically.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+
+  <h6>Mining Companies</h6>
+  <p>See how PEBBLE™ can reduce your exploration costs and improve drilling success rates. We'll walk you through a demo using your own data.</p>
+  <span class="cta-tag">Book a Demo</span>
+  <p>&nbsp;</p>
+
+  <h6>Investors</h6>
+  <p>Learn about our technology, early traction, and vision for the future of mineral exploration — on Earth and beyond.</p>
+  <span class="cta-tag" style="background:#3B82F6">Request a Meeting</span>
+  <p>&nbsp;</p>
+
+  <h6>Partners & Researchers</h6>
+  <p>Interested in collaborating on research, technology integration, or space applications? We're building an ecosystem.</p>
+  <span class="cta-tag" style="background:#D4A843">Get in Touch</span>
+</div>
+
+<!-- CONTACT: FORM -->
+<h3>Section 3: Contact Form</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Cool White (#F7F8FA).<br>
+  <strong>Content:</strong> Two-column layout. Left (55%): contact form. Right (45%): Calendly embed or "Schedule directly" card with Calendly link + location info.<br>
+  <strong>Form fields:</strong> Name (first + last on one row), Email, Organization, "I am a..." dropdown (Mining Company, Investor, Partner, Media, Other), Message textarea, Submit button.<br>
+  <strong>Mobile:</strong> Single column, form first, then Calendly card.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy — Form Section</div>
+  <h6>Send us a message</h6>
+  <p>Fill out the form and we'll get back to you within one business day.</p>
+  <p><em>Form fields: First Name, Last Name, Email, Organization, "I am a..." (dropdown), Message, Submit</em></p>
+  <p>&nbsp;</p>
+
+  <h6>Prefer to schedule directly?</h6>
+  <p>Book a 30-minute call with our team. No commitment — just a conversation about what you're working on.</p>
+  <span class="cta-tag">Book a 30-Minute Call</span>
+  <p>&nbsp;</p>
+  <p style="font-size:0.85rem"><strong>Based in:</strong> Ajax, Ontario (Greater Toronto Area)<br>
+  <strong>Email:</strong> hello@moontrades.space</p>
+</div>
+
+<!-- CONTACT: EMAIL CAPTURE -->
+<h3>Section 4: Email Capture / Newsletter</h3>
+<div class="layout-note">
+  <div class="note-label">Layout</div>
+  <p style="margin:0"><strong>Background:</strong> Deep Navy. Full-width bar.<br>
+  <strong>Content:</strong> Centered — heading + description + inline email input with subscribe button. Simple, non-intrusive.<br>
+  <strong>Integration:</strong> Connect to Mailchimp, ConvertKit, or Framer's native form handling. See Technical Notes section.</p>
+</div>
+
+<div class="copy-block">
+  <div class="copy-label">Website Copy</div>
+  <h5>Stay in the loop.</h5>
+  <p>Get updates on PEBBLE™ development, pilot results, and Moon Trades news. No spam — just milestones that matter.</p>
+  <p><em>[Email input field] [Subscribe button]</em></p>
+  <p style="font-size:0.8rem">We send updates monthly. Unsubscribe anytime.</p>
+</div>
+
+
+<!-- ============================================================ -->
+<!-- TECHNICAL NOTES -->
+<!-- ============================================================ -->
+<div class="page-divider" id="technical">
+  <span class="page-num">IMPLEMENTATION</span>
+  <h2>Technical Notes</h2>
+</div>
+
+<h3>Analytics Setup</h3>
+<div class="tech-note">
+  <div class="note-label">Implementation</div>
+  <p style="margin:0 0 0.75rem"><strong>Google Analytics 4 (GA4):</strong> Set up a GA4 property and add the measurement ID in Framer's project settings (Settings → General → Custom Code → Head). Track page views, scroll depth, CTA clicks, and form submissions as custom events.</p>
+  <p style="margin:0 0 0.75rem"><strong>Key events to track:</strong></p>
+  <ul style="margin:0 0 0.75rem">
+    <li><code>cta_click</code> — with parameters: button_text, page, destination</li>
+    <li><code>form_submit</code> — with parameters: form_type (contact, newsletter), audience_type</li>
+    <li><code>calendly_click</code> — tracks demo booking intent</li>
+    <li><code>media_kit_download</code> — tracks press engagement</li>
+    <li><code>scroll_depth</code> — 25%, 50%, 75%, 100% per page</li>
+  </ul>
+  <p style="margin:0"><strong>Google Search Console:</strong> Verify ownership to monitor organic search performance and indexing.</p>
+</div>
+
+<h3>Pixel Tracking</h3>
+<div class="tech-note">
+  <div class="note-label">Implementation</div>
+  <p style="margin:0 0 0.75rem"><strong>LinkedIn Insight Tag:</strong> Essential for B2B — tracks company demographics of visitors. Install via Framer custom code (head section). Set up conversion events for form submissions and demo bookings.</p>
+  <p style="margin:0 0 0.75rem"><strong>Meta Pixel (optional):</strong> If Moon Trades runs Facebook/Instagram ads, install the pixel for retargeting. Track PageView, Lead (form submit), and Schedule (Calendly click) events.</p>
+  <p style="margin:0"><strong>Note:</strong> Add all pixels through Framer's custom code injection (Settings → Custom Code) to keep them outside the page components. Use a cookie consent banner for GDPR/PIPEDA compliance — Framer has built-in cookie consent or use CookieYes.</p>
+</div>
+
+<h3>Email Capture</h3>
+<div class="tech-note">
+  <div class="note-label">Implementation</div>
+  <p style="margin:0 0 0.75rem"><strong>Recommended: Mailchimp or ConvertKit.</strong> Both integrate with Framer's native form component. Create an audience/list with tags for source page and audience type.</p>
+  <p style="margin:0 0 0.75rem"><strong>Form handling options in Framer:</strong></p>
+  <ul style="margin:0 0 0.75rem">
+    <li>Framer native forms — simplest, sends to email or webhook</li>
+    <li>Mailchimp embedded form — direct list integration</li>
+    <li>ConvertKit form — better for sequences and tagging</li>
+    <li>Zapier webhook — most flexible, connects to any CRM</li>
+  </ul>
+  <p style="margin:0"><strong>Segmentation:</strong> Tag subscribers by source: "newsletter" (email capture bar), "contact-form" (contact page), and audience type from the dropdown.</p>
+</div>
+
+<h3>Calendly Integration</h3>
+<div class="tech-note">
+  <div class="note-label">Implementation</div>
+  <p style="margin:0"><strong>Current link:</strong> calendly.com/wintta-moontrades/30min. In Framer, use a simple button link to Calendly (opens in new tab) rather than an embed — Calendly iframes can be slow and don't always render well on mobile. Style the button prominently. Consider adding UTM parameters to the Calendly link to track which page the booking came from.</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- MOBILE & QA -->
+<!-- ============================================================ -->
+<div class="page-divider" id="mobile">
+  <span class="page-num">QA</span>
+  <h2>Mobile & Performance</h2>
+</div>
+
+<h3>Mobile-First Checklist</h3>
+<div class="section-card">
+  <ul style="margin:0">
+    <li><strong>Navigation:</strong> Hamburger menu, slide-in drawer, full-height dark background</li>
+    <li><strong>Touch targets:</strong> All buttons and links minimum 44×44px tap area</li>
+    <li><strong>Font sizes:</strong> Body minimum 16px (prevents iOS zoom on input focus), headlines minimum 28px</li>
+    <li><strong>Images:</strong> Serve responsive images via Framer's built-in optimization. Use WebP format.</li>
+    <li><strong>Forms:</strong> Full-width inputs on mobile, proper input types (email, tel), visible labels above fields</li>
+    <li><strong>CTAs:</strong> Full-width buttons on mobile, sticky CTA bar at bottom of homepage (optional)</li>
+    <li><strong>Horizontal scroll:</strong> None. Test at 375px, 390px, 414px widths</li>
+    <li><strong>Section padding:</strong> 48px top/bottom on mobile (vs 80px+ desktop)</li>
+    <li><strong>Card grids:</strong> Always single column on mobile, stack order matches reading order</li>
+  </ul>
+</div>
+
+<h3>Performance Targets</h3>
+<div class="section-card">
+  <ul style="margin:0">
+    <li><strong>Lighthouse Performance:</strong> Target 90+ on mobile</li>
+    <li><strong>LCP (Largest Contentful Paint):</strong> Under 2.5s — optimize hero images, use Framer's lazy loading</li>
+    <li><strong>CLS (Cumulative Layout Shift):</strong> Under 0.1 — set explicit dimensions on images, avoid layout-shifting fonts</li>
+    <li><strong>FID (First Input Delay):</strong> Under 100ms — minimize third-party scripts</li>
+    <li><strong>Image optimization:</strong> Framer handles this natively. Ensure hero images are under 200KB compressed.</li>
+    <li><strong>Font loading:</strong> Use <code>font-display: swap</code> to prevent FOIT (flash of invisible text)</li>
+    <li><strong>Third-party scripts:</strong> Load analytics and pixels asynchronously. Defer non-critical scripts.</li>
+  </ul>
+</div>
+
+<h3>Testing Devices</h3>
+<div class="section-card">
+  <p style="margin:0 0 0.5rem">Test on these breakpoints and devices before launch:</p>
+  <ul style="margin:0">
+    <li><strong>Mobile:</strong> iPhone 14/15 (390px), iPhone SE (375px), Samsung Galaxy S23 (360px)</li>
+    <li><strong>Tablet:</strong> iPad (768px), iPad Pro (1024px)</li>
+    <li><strong>Desktop:</strong> 1280px, 1440px, 1920px</li>
+    <li><strong>Browsers:</strong> Chrome, Safari (especially mobile Safari), Firefox, Edge</li>
+  </ul>
+</div>
+
+<h3>SEO Essentials</h3>
+<div class="section-card">
+  <ul style="margin:0">
+    <li><strong>Page titles:</strong> "Moon Trades | AI for Critical Mineral Exploration" (home), unique per page</li>
+    <li><strong>Meta descriptions:</strong> Unique, 150–160 chars, include "PEBBLE" and "mineral exploration"</li>
+    <li><strong>OG tags:</strong> Set per page with appropriate images for social sharing</li>
+    <li><strong>Heading hierarchy:</strong> Single H1 per page, logical H2→H3 nesting</li>
+    <li><strong>Alt text:</strong> Descriptive alt text on all images</li>
+    <li><strong>Sitemap:</strong> Framer generates automatically</li>
+    <li><strong>Favicon:</strong> Use existing Moon Trades icon, ensure it's set in Framer project settings</li>
+  </ul>
+</div>
+
+<hr>
+
+<div style="text-align:center;padding:2rem 0;color:var(--doc-muted);font-size:0.85rem;">
+  <p><strong>Moon Trades Technologies — Website Redesign Specification</strong></p>
+  <p>Prepared for job application review. All copy is original, written based on publicly available information about Moon Trades Technologies, PEBBLE™, and Dr. Wintta Ghebreiyesus. Brand colors and typography are proposed refinements of the existing visual identity.</p>
+</div>
