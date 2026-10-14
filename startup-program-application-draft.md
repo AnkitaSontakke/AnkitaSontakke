@@ -10,21 +10,21 @@ Fill every [BRACKET] before submitting. Do not guess these. Google may verify th
 
 ## Basics
 - Company name: Dysmorphic Labs
-- Website: https://www.dysmorphiclabs.com
+- Website: https://dysmorphiclabs.com
 - Applicant email: [you@dysmorphiclabs.com]
 - Billing account ID: [18 characters, from console.cloud.google.com/billing]
 - Country: [country]
-- Founded: [month and year, must be within the last 24 months]
+- Founded: 1 October [2026, confirm the year; either 2025 or 2026 is inside the 24-month window]
 - Team size: 2 founders [confirm; add anyone else]
 - Funding to date: [none / self-funded / friends and family / angel]. Be accurate.
-- Plans to raise venture funding: [yes, planned for ___ / not decided]. Start tier is for startups planning to seek VC soon.
+- Plans to raise venture funding: Yes. Pitch deck is ready. Start tier is for startups planning to seek VC soon, so this fits. Do not upload the deck unless the form asks. Google only asks for public funding links on Scale tier.
 - Previously received Google Cloud credits beyond free trial: [No, confirm]
 
 ## Company description (short)
 Dysmorphic Labs is building privacy eyewear that keeps your face out of other people's cameras. Each frame hides a ring of near-infrared LEDs in the rim. The light is invisible to people but overwhelms camera sensors, so a photo of the wearer reads as a soft glow instead of a clean capture. It switches on with one touch on the temple. We start with sunglasses and plan pins, earrings, and cuffs. First frames are being made in small batches, and we run a public waitlist for early access.
 
 ## Product stage
-[Edit to match reality. Do not claim a shipped product if there isn't one.]
+(Confirmed by founder as the real stage.)
 Working prototype of Collection 01 frames with embedded IR LEDs and touch control. Public site and waitlist live at dysmorphiclabs.com. Small-batch production in progress.
 
 ## Business model
