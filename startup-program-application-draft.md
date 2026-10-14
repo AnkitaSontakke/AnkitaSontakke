@@ -13,12 +13,12 @@ Fill every [BRACKET] before submitting. Do not guess these. Google may verify th
 - Website: https://dysmorphiclabs.com
 - Applicant email: [you@dysmorphiclabs.com]
 - Billing account ID: [18 characters, from console.cloud.google.com/billing]
-- Country: [country]
-- Founded: 1 October [2026, confirm the year; either 2025 or 2026 is inside the 24-month window]
-- Team size: 2 founders [confirm; add anyone else]
-- Funding to date: [none / self-funded / friends and family / angel]. Be accurate.
+- Country: [country where the company is registered: India or US? Founders are in India (Ankita) and the US (Mikaela)]
+- Founded: 1 October 2026
+- Team size: 2 founders plus 1 consultant (Ryan)
+- Funding to date: None
 - Plans to raise venture funding: Yes. Pitch deck is ready. Start tier is for startups planning to seek VC soon, so this fits. Do not upload the deck unless the form asks. Google only asks for public funding links on Scale tier.
-- Previously received Google Cloud credits beyond free trial: [No, confirm]
+- Previously received Google Cloud credits beyond free trial: No (confirmed)
 
 ## Company description (short)
 Dysmorphic Labs is building privacy eyewear that keeps your face out of other people's cameras. Each frame hides a ring of near-infrared LEDs in the rim. The light is invisible to people but overwhelms camera sensors, so a photo of the wearer reads as a soft glow instead of a clean capture. It switches on with one touch on the temple. We start with sunglasses and plan pins, earrings, and cuffs. First frames are being made in small batches, and we run a public waitlist for early access.
